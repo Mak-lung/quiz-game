@@ -1,345 +1,370 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+   }
 
-body {
-    font-family: 'Noto Sans TC', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #F5F5F5;
-    color: #333;
-}
+   body {
+       font-family: 'Noto Sans TC', sans-serif;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       min-height: 100vh;
+       background: #F5F5F5;
+       color: #333;
+   }
 
-.container {
-    max-width: 700px;
-    width: 90%;
-    padding: 30px;
-    background: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    border-radius: 10px;
-    text-align: center;
-    animation: fadeIn 0.6s ease-in;
-}
+   .container {
+       max-width: 700px;
+       width: 90%;
+       padding: 30px;
+       background: #FFFFFF;
+       border: 1px solid #E0E0E0;
+       border-radius: 10px;
+       text-align: center;
+       animation: fadeIn 0.6s ease-in;
+   }
 
-.login-container {
-    max-width: 400px;
-}
+   .login-container {
+       max-width: 400px;
+   }
 
-h1 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #333;
-}
+   h1 {
+       font-size: 1.8rem;
+       margin-bottom: 20px;
+       color: #333;
+   }
 
-h2 {
-    font-size: 1.3rem;
-    margin: 20px 0;
-    color: #333;
-}
+   h2 {
+       font-size: 1.3rem;
+       margin: 20px 0;
+       color: #333;
+   }
 
-h4 {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: #333;
-}
+   h4 {
+       font-size: 1.1rem;
+       margin-bottom: 10px;
+       color: #333;
+   }
 
-input, button, .option {
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
+   input, button, .option {
+       width: 100%;
+       padding: 15px;
+       margin: 10px 0;
+       border: none;
+       border-radius: 8px;
+       font-size: 1rem;
+       transition: all 0.3s ease;
+   }
 
-input {
-    border: 1px solid #E0E0E0;
-    background: #F9F9F9;
-}
+   input {
+       border: 1px solid #E0E0E0;
+       background: #F9F9F9;
+   }
 
-input:focus {
-    outline: none;
-    border-color: #333;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
+   input:focus {
+       outline: none;
+       border-color: #333;
+       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+   }
 
-.animated-input {
-    animation: slideIn 0.5s ease;
-}
+   .animated-input {
+       animation: slideIn 0.5s ease;
+   }
 
-button, .option {
-    background: #D1D1D1;
-    color: #333;
-    cursor: pointer;
-    font-weight: 500;
-}
+   button, .option {
+       background: #D1D1D1 !important;
+       color: #333 !important;
+       cursor: pointer;
+       font-weight: 500;
+   }
 
-button:hover, .option:hover {
-    background: #B0B0B0;
-    transform: scale(1.02);
-}
+   button:hover, .option:hover {
+       background: #B0B0B0 !important;
+       transform: scale(1.02);
+   }
 
-button:disabled, .option:disabled {
-    background: #E0E0E0;
-    cursor: not-allowed;
-    transform: none;
-}
+   button:disabled, .option:disabled {
+       background: #D1D1D1 !important;
+       color: #666 !important;
+       cursor: not-allowed;
+       transform: none;
+       opacity: 1 !important;
+       border: 1px solid #E0E0E0 !important;
+   }
 
-.animated-btn {
-    animation: slideIn 0.5s ease;
-}
+   .option.correct:disabled {
+       background: #4CAF50 !important;
+       color: #FFF !important;
+   }
 
-.option {
-    animation: slideIn 0.5s ease forwards;
-    animation-delay: calc(var(--option-index) * 0.1s);
-    opacity: 0;
-}
+   .option.wrong:disabled {
+       background: #F44336 !important;
+       color: #FFF !important;
+   }
 
-.option.correct {
-    background: #4CAF50;
-    color: #FFF;
-    animation: pulse 0.4s ease;
-}
+   .animated-btn {
+       animation: slideIn 0.5s ease;
+   }
 
-.option.wrong {
-    background: #F44336;
-    color: #FFF;
-    animation: shake 0.4s ease;
-}
+   .option {
+       animation: slideIn 0.5s ease forwards;
+       animation-delay: calc(var(--option-index) * 0.1s);
+       opacity: 0;
+   }
 
-#next-btn:disabled {
-    background: #E0E0E0;
-    cursor: not-allowed;
-}
+   .option.correct {
+       background: #4CAF50 !important;
+       color: #FFF !important;
+       animation: pulse 0.4s ease;
+   }
 
-.nav-link {
-    display: inline-block;
-    margin-top: 20px;
-    color: #333;
-    text-decoration: none;
-    font-weight: 500;
-}
+   .option.wrong {
+       background: #F44336 !important;
+       color: #FFF !important;
+       animation: shake 0.4s ease;
+   }
 
-.nav-link:hover {
-    text-decoration: underline;
-}
+   #next-btn:disabled {
+       background: #D1D1D1 !important;
+       color: #666 !important;
+       cursor: not-allowed;
+       pointer-events: auto;
+   }
 
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: #E0E0E0;
-    border-radius: 4px;
-    margin: 15px 0;
-    overflow: hidden;
-}
+   #next-btn {
+       background: #D1D1D1 !important;
+       color: #333 !important;
+   }
 
-.progress-fill {
-    height: 100%;
-    background: #333;
-    border-radius: 4px;
-    width: 0;
-    animation: progressFill 0.5s ease forwards;
-}
+   #next-btn:not(:disabled):hover {
+       background: #B0B0B0 !important;
+       transform: scale(1.02);
+   }
 
-.timer {
-    position: relative;
-    display: inline-block;
-    margin: 15px 0;
-}
+   .nav-link {
+       display: inline-block;
+       margin-top: 20px;
+       color: #333;
+       text-decoration: none;
+       font-weight: 500;
+   }
 
-.timer-circle {
-    transform: rotate(-90deg);
-}
+   .nav-link:hover {
+       text-decoration: underline;
+   }
 
-.timer-bg {
-    fill: none;
-    stroke: #E0E0E0;
-    stroke-width: 3;
-}
+   .progress-bar {
+       width: 100%;
+       height: 8px;
+       background: #E0E0E0;
+       border-radius: 4px;
+       margin: 15px 0;
+       overflow: hidden;
+   }
 
-#timer-progress {
-    fill: none;
-    stroke: #333;
-    stroke-width: 3;
-    stroke-dasharray: 175.929;
-    stroke-dashoffset: 0;
-    animation: timerSpin 10s linear forwards;
-}
+   .progress-fill {
+       height: 100%;
+       background: #333;
+       border-radius: 4px;
+       width: 0;
+       animation: progressFill 0.5s ease forwards;
+   }
 
-.timer-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.2rem;
-    color: #333;
-    animation: bounce 0.5s ease infinite;
-}
+   .timer {
+       position: relative;
+       display: inline-block;
+       margin: 15px 0;
+   }
 
-.stats-grid {
-    display: grid;
-    gap: 15px;
-    margin: 20px 0;
-}
+   .timer-circle {
+       transform: rotate(-90deg);
+   }
 
-.stat-card {
-    background: #F9F9F9;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #E0E0E0;
-    animation: popIn 0.5s ease forwards;
-    animation-delay: calc(var(--card-index) * 0.2s);
-    opacity: 0;
-}
+   .timer-bg {
+       fill: none;
+       stroke: #E0E0E0;
+       stroke-width: 3;
+   }
 
-.stat-card h3 {
-    color: #333;
-    margin-bottom: 10px;
-}
+   #timer-progress {
+       fill: none;
+       stroke: #333;
+       stroke-width: 3;
+       stroke-dasharray: 175.929;
+       stroke-dashoffset: 0;
+       animation: timerSpin 10s linear forwards;
+   }
 
-.ring-container {
-    margin: 20px 0;
-    text-align: center;
-}
+   .timer-text {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       font-size: 1.2rem;
+       color: #333;
+       animation: bounce 0.5s ease infinite;
+   }
 
-.ring {
-    position: relative;
-    display: inline-block;
-}
+   .stats-grid {
+       display: grid;
+       gap: 15px;
+       margin: 20px 0;
+   }
 
-.ring-circle {
-    transform: rotate(-90deg);
-}
+   .stat-card {
+       background: #F9F9F9;
+       padding: 20px;
+       border-radius: 8px;
+       border: 1px solid #E0E0E0;
+       animation: popIn 0.5s ease forwards;
+       animation-delay: calc(var(--card-index) * 0.2s);
+       opacity: 0;
+   }
 
-.ring-bg {
-    fill: none;
-    stroke: #E0E0E0;
-    stroke-width: 8;
-}
+   .stat-card h3 {
+       color: #333;
+       margin-bottom: 10px;
+   }
 
-.ring-progress {
-    fill: none;
-    stroke: #333;
-    stroke-width: 8;
-    stroke-dasharray: 314.159;
-    stroke-dashoffset: calc(314.159 - var(--progress));
-    transition: stroke-dashoffset 1s ease-in-out;
-}
+   .ring-container {
+       margin: 20px 0;
+       text-align: center;
+   }
 
-.ring-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.2rem;
-    color: #333;
-    animation: bounce 0.5s ease infinite;
-}
+   .ring {
+       position: relative;
+       display: inline-block;
+   }
 
-.explanation {
-    margin-top: 15px;
-    padding: 10px;
-    background: #F9F9F9;
-    border: 1px solid #E0E0E0;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    color: #333;
-    animation: slideIn 0.5s ease;
-}
+   .ring-circle {
+       transform: rotate(-90deg);
+   }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+   .ring-bg {
+       fill: none;
+       stroke: #E0E0E0;
+       stroke-width: 8;
+   }
 
-@keyframes slideIn {
-    from { transform: translateX(-20px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
+   .ring-progress {
+       fill: none;
+       stroke: #333;
+       stroke-width: 8;
+       stroke-dasharray: 314.159;
+       stroke-dashoffset: calc(314.159 - var(--progress));
+       transition: stroke-dashoffset 1s ease-in-out;
+   }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
+   .ring-text {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       font-size: 1.2rem;
+       color: #333;
+       animation: bounce 0.5s ease infinite;
+   }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
+   .explanation {
+       margin-top: 15px;
+       padding: 10px;
+       background: #F9F9F9;
+       border: 1px solid #E0E0E0;
+       border-radius: 8px;
+       font-size: 0.95rem;
+       color: #333;
+       animation: slideIn 0.5s ease;
+   }
 
-@keyframes progressFill {
-    to { width: var(--progress-width); }
-}
+   /* Animations */
+   @keyframes fadeIn {
+       from { opacity: 0; transform: translateY(10px); }
+       to { opacity: 1; transform: translateY(0); }
+   }
 
-@keyframes timerSpin {
-    to { stroke-dashoffset: 175.929; }
-}
+   @keyframes slideIn {
+       from { transform: translateX(-20px); opacity: 0; }
+       to { transform: translateX(0); opacity: 1; }
+   }
 
-@keyframes bounce {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.1); }
-}
+   @keyframes pulse {
+       0% { transform: scale(1); }
+       50% { transform: scale(1.05); }
+       100% { transform: scale(1); }
+   }
 
-@keyframes popIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
+   @keyframes shake {
+       0%, 100% { transform: translateX(0); }
+       25% { transform: translateX(-5px); }
+       75% { transform: translateX(5px); }
+   }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    .container {
-        width: 95%;
-        padding: 20px;
-    }
+   @keyframes progressFill {
+       to { width: var(--progress-width); }
+   }
 
-    h1 {
-        font-size: 1.5rem;
-    }
+   @keyframes timerSpin {
+       to { stroke-dashoffset: 175.929; }
+   }
 
-    h2 {
-        font-size: 1.1rem;
-    }
+   @keyframes bounce {
+       0%, 100% { transform: translate(-50%, -50%) scale(1); }
+       50% { transform: translate(-50%, -50%) scale(1.1); }
+   }
 
-    input, button, .option {
-        padding: 12px;
-        font-size: 0.9rem;
-    }
+   @keyframes popIn {
+       from { transform: scale(0.9); opacity: 0; }
+       to { transform: scale(1); opacity: 1; }
+   }
 
-    .timer-circle {
-        width: 50px;
-        height: 50px;
-    }
+   /* Responsive Design */
+   @media (max-width: 600px) {
+       .container {
+           width: 95%;
+           padding: 20px;
+       }
 
-    .timer-bg, #timer-progress {
-        cx: 25;
-        cy: 25;
-        r: 23;
-    }
+       h1 {
+           font-size: 1.5rem;
+       }
 
-    .timer-text {
-        font-size: 1rem;
-    }
+       h2 {
+           font-size: 1.1rem;
+       }
 
-    .ring-circle {
-        width: 100px;
-        height: 100px;
-    }
+       input, button, .option {
+           padding: 12px;
+           font-size: 0.9rem;
+       }
 
-    .ring-bg, .ring-progress {
-        cx: 50;
-        cy: 50;
-        r: 40;
-    }
+       .timer-circle {
+           width: 50px;
+           height: 50px;
+       }
 
-    .ring-text {
-        font-size: 1rem;
-    }
-}
+       .timer-bg, #timer-progress {
+           cx: 25;
+           cy: 25;
+           r: 23;
+       }
+
+       .timer-text {
+           font-size: 1rem;
+       }
+
+       .ring-circle {
+           width: 100px;
+           height: 100px;
+       }
+
+       .ring-bg, .ring-progress {
+           cx: 50;
+           cy: 50;
+           r: 40;
+       }
+
+       .ring-text {
+           font-size: 1rem;
+       }
+   }
