@@ -53,17 +53,49 @@ function showQuestion() {
         button.onclick = () => selectOption(option, question, button);
         optionsDiv.appendChild(button);
     });
+    // 清空之前的解釋（如果有）
+    const explanationDiv = document.createElement("div");
+    explanationDiv.id = "explanation";
+    explanationDiv.classList.add("explanation");
+    optionsDiv.appendChild(explanationDiv);
     document.getElementById("next-btn").disabled = true;
 }
 
 function selectOption(selected, question, button) {
     clearInterval(timer);
     const isCorrect = selected === question.answer;
-    button.classList.add(isCorrect ? "correct" : "wrong");
+    // 變色並禁用所有選項
+    const options = document.querySelectorAll(".option");
+    options.forEach(opt => {
+        opt.disabled = true; // 禁用按鈕
+        if (opt.textContent === question.answer) {
+            opt.classList.add("correct"); // 正確答案變綠
+        } else if (opt === button && !isCorrect) {
+            opt.classList.add("wrong"); // 錯誤答案變紅
+        }
+    });
+
+    // 計分和統計
     if (isCorrect) {
         score++;
     }
     updateStats(question, isCorrect);
+
+    // 顯示正確答案和解釋
+    const explanationDiv = document.getElementById("explanation");
+    let explanationText = "";
+    if (username === "KING") {
+        explanationText = isCorrect 
+            ? `答對了！正確答案是「${question.answer}」。`
+            : `答錯了。正確答案是「${question.answer}」。`;
+    } else {
+        explanationText = isCorrect 
+            ? `Correct! The answer is "${question.answer}".`
+            : `Incorrect. The correct answer is "${question.answer}".`;
+    }
+    explanationDiv.innerHTML = `<p>${explanationText}</p>`;
+
+    // 啟用「下一題」按鈕
     document.getElementById("next-btn").disabled = false;
 }
 
@@ -78,7 +110,6 @@ function updateStats(question, isCorrect) {
     const category = question.type === "word" || question.type === "idiom" ? question.type : question.type === "phrase" ? "idiom" : "word";
     stats[username][question.type === "word" || question.type === "idiom" ? question.type : "word"].total++;
     if (isCorrect) {
-        stats[username][question.type === "word" || question.type === "idiom" ? questionpolicy: question.type === "word" || question.type === "idiom" || question.type === "phrase"].total++;
         stats[username][question.type === "word" || question.type === "idiom" ? question.type : "word"].correct++;
     }
     localStorage.setItem("stats", JSON.stringify(stats));
