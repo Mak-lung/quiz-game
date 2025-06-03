@@ -6,12 +6,19 @@ const username = localStorage.getItem("username");
 let currentQuestions = [];
 
 function startQuiz() {
+    console.log("Starting quiz... Username:", username); // 調試日誌
+    if (!username) {
+        alert("請先登入！");
+        window.location.href = "index.html";
+        return;
+    }
     currentQuestionIndex = 0;
     score = 0;
     currentQuestions = [
         ...quizData[username].selfRespect,
         ...quizData[username].selfControl
     ].sort(() => Math.random() - 0.5);
+    console.log("Questions loaded:", currentQuestions.length); // 調試日誌
     updateProgress();
     showQuestion();
 }
@@ -24,6 +31,7 @@ function updateProgress() {
 }
 
 function showQuestion() {
+    console.log("Showing question:", currentQuestionIndex + 1); // 調試日誌
     clearInterval(timer);
     document.getElementById("timer").textContent = TIME_LIMIT;
     let timeLeft = TIME_LIMIT;
@@ -62,6 +70,7 @@ function showQuestion() {
 }
 
 function selectOption(selected, question, button) {
+    console.log("Option selected:", selected); // 調試日誌
     clearInterval(timer);
     const isCorrect = selected === question.answer;
     // 變色並禁用所有選項
@@ -102,17 +111,32 @@ function selectOption(selected, question, button) {
 }
 
 function updateStats(question, isCorrect) {
-    const stats = JSON.parse(localStorage.getItem("stats") || "{}");
+    console.log("Updating stats for question:", question); // 調試日誌
+    let stats = JSON.parse(localStorage.getItem("stats") || "{}");
+    // 確保 stats 是一個物件
+    if (!stats || typeof stats !== "object") {
+        stats = {};
+    }
+    // 確保 stats[username] 已初始化
     if (!stats[username]) {
         stats[username] = {
-            selfRespect: { correct: 0, total: 0 },
-            selfControl: { correct: 0, total: 0 }
+            word: { correct: 0, total: 0 },
+            idiom: { correct: 0, total: 0 }
         };
     }
-    const category = question.type === "word" || question.type === "idiom" ? question.type : question.type === "phrase" ? "idiom" : "word";
-    stats[username][question.type === "word" || question.type === "idiom" ? question.type : "word"].total++;
+    // 計算 category
+    const category = question.type === "word" || question.type === "idiom" 
+        ? question.type 
+        : question.type === "phrase" ? "idiom" : "word";
+    console.log("Category:", category); // 調試日誌
+    // 確保 stats[username][category] 已初始化
+    if (!stats[username][category]) {
+        stats[username][category] = { correct: 0, total: 0 };
+    }
+    // 更新統計
+    stats[username][category].total++;
     if (isCorrect) {
-        stats[username][question.type === "word" || question.type === "idiom" ? question.type : "word"].correct++;
+        stats[username][category].correct++;
     }
     localStorage.setItem("stats", JSON.stringify(stats));
 }
