@@ -96,7 +96,9 @@ function selectOption(selected, question, button) {
     explanationDiv.innerHTML = `<p>${explanationText}</p>`;
 
     // 啟用「下一題」按鈕
-    document.getElementById("next-btn").disabled = false;
+    const nextBtn = document.getElementById("next-btn");
+    nextBtn.disabled = false;
+    console.log("Next button enabled:", nextBtn.disabled); // 調試日誌
 }
 
 function updateStats(question, isCorrect) {
