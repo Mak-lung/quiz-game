@@ -12,6 +12,12 @@ function startQuiz() {
         window.location.href = "index.html";
         return;
     }
+    // 確保 quizData[username] 存在
+    if (!quizData[username]) {
+        alert("無效的用戶名！");
+        window.location.href = "index.html";
+        return;
+    }
     currentQuestionIndex = 0;
     score = 0;
     currentQuestions = [
@@ -124,13 +130,18 @@ function updateStats(question, isCorrect) {
             idiom: { correct: 0, total: 0 }
         };
     }
+    // 檢查 question.type 是否有效
+    if (!question.type) {
+        console.error("Invalid question type:", question);
+        question.type = "word"; // 設置默認值
+    }
     // 計算 category
     const category = question.type === "word" || question.type === "idiom" 
         ? question.type 
         : question.type === "phrase" ? "idiom" : "word";
     console.log("Category:", category); // 調試日誌
     // 確保 stats[username][category] 已初始化
-    if (!stats[username][category]) {
+    if (!stats[username][category] || typeof stats[username][category] !== "object") {
         stats[username][category] = { correct: 0, total: 0 };
     }
     // 更新統計
@@ -139,6 +150,7 @@ function updateStats(question, isCorrect) {
         stats[username][category].correct++;
     }
     localStorage.setItem("stats", JSON.stringify(stats));
+    console.log("Updated stats:", stats[username]); // 調試日誌
 }
 
 function nextQuestion() {
